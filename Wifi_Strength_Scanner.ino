@@ -16,10 +16,10 @@
 #include <WiFiType.h>
 #include <WiFiUdp.h>
 #include <ezButton.h>
-
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27,16,2);
 
+LiquidCrystal_I2C lcd(0x27,16,2);
+String NETWORK_OF_INTEREST = "wifinetwork";
 ezButton buttonUp(4);
 ezButton buttonDown(2);
 ezButton buttonSend(15);
@@ -27,9 +27,8 @@ int locationTagNum = 1;
 int data_version = 0;
 int timeOutForSubmission = 15000;
 int timeLastSubmit = 0;
-
-const char * host = "thingspeak.com"; // ip or dns
-String uri = "thingspeak.com/update?api_key=2NDLDZRNZK9WJET1";
+String thingSpeakApiKey = "PUT-YOUR-KEY-HERE";
+String uri = "thingspeak.com/update?api_key=" + thingSpeakApiKey;  
 const char* root_ca = \
                       "-----BEGIN CERTIFICATE-----\n" \
 "MIIDxTCCAq2gAwIBAgIQAqxcJmoLQJuPC3nyrkYldzANBgkqhkiG9w0BAQUFADBs\n" \
@@ -59,17 +58,15 @@ const char* root_ca = \
 void setup() {
   Serial.begin(9600);
   Serial.print("-----------Starting------------");
-  lcd.init();                      // initialize the lcd 
-  // Print a message to the LCD.
-  //lcd.backlight();
+  lcd.init(); // initialize the lcd 
   lcd.clear();
   lcd.setCursor(0,0); lcd.print("Waiting for WiFi...  ");
+  
+  //If the device can't connect to the internet, the user can connect to "WiFiScanner"
   WiFiManager wifiManager;
   wifiManager.autoConnect("WiFiScanner");
   Serial.println("Connected to WiFi.  ");
   lcd.setCursor(1,0);lcd.print("Connected.         ");
-  // lcd.setCursor(1,1);
-  // lcd.print("Now Listening...");
 
   buttonUp.setDebounceTime(10);
   buttonDown.setDebounceTime(10);
@@ -89,13 +86,11 @@ void loop() {
 
 
   if(buttonUp.isPressed()){
-    //lcd.setCursor(1,0);lcd.print("Pressed +     ");
     if (locationTagNum < 50)
       locationTagNum++;
 
   }
   if(buttonDown.isPressed()){
-    //lcd.setCursor(1,0);lcd.print("Pressed -     ");
     if (locationTagNum > 1)
       locationTagNum--;
   }
@@ -127,24 +122,26 @@ void scan() {
   lcd.print("Scanning...");
   // WiFi.scanNetworks will return the number of networks found
   int n = WiFi.scanNetworks();
-  Serial.println("scan done");
-  lcd.setCursor(1,0);lcd.print("scan done.");
+  Serial.println("Scan complete.");
+  lcd.setCursor(1,0);lcd.print("Scan done.");
   if (n == 0) {
-      Serial.println("no networks found");
-      lcd.setCursor(1,0);lcd.print("scan done.");
-      delay(500);
+      Serial.println("No networks found");
+      lcd.setCursor(1,0);lcd.print("No networks!");
+      delay(1000);
   } else {
     Serial.print(n);
-    Serial.println(" networks found");
+    Serial.println(" Networks found");
     connectToWifi();
     for (int i = 0; i < n; ++i) {
-      // Print SSID and RSSI for each network found
+      // Submit SSID and RSSI data for each network found
+      sendData(WiFi.SSID(i),  WiFi.RSSI(i));
+      
+      // Print and Display SSID and RSSI for each network found
       char buffer[16];
       char subbuff[7];
       memcpy( subbuff, &WiFi.SSID(i)[0], 5 );
       subbuff[6] = '\0';
       sprintf(buffer, "%d:%6s (%d)", i+1, subbuff, WiFi.RSSI(i));
-      sendData(WiFi.SSID(i),  WiFi.RSSI(i));
       lcd.setCursor(0,1);lcd.print(buffer);
       Serial.print(i + 1);
       Serial.print(": ");
@@ -153,6 +150,7 @@ void scan() {
       Serial.print(WiFi.RSSI(i));
       Serial.print(")");
       Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
+      
       delay(200);
     }
   }
@@ -164,12 +162,13 @@ void scan() {
 void sendData(String ssid, int rssi)
 {
   
-  /////////////////////
+  //////////////////////////////
   // Record only one network. 
-  // If there's no limit on data submission interval, remove these lines and send all wifi networks data (thingspeak.com accepts only one message every 15 seconds)
-  if (ssid != "Champ") 
+  // If there's no limit on data submission interval, remove these lines and send all wifi networks data 
+  // (thingspeak.com accepts only one message every 15 seconds, so I scan a single network)
+  if (ssid != NETWORK_OF_INTEREST) 
     return;
-  /////////////////////
+  //////////////////////////////
   Serial.print("sending data: ");
   Serial.print(ssid);
   Serial.print(", ");
@@ -197,7 +196,6 @@ void sendData(String ssid, int rssi)
 
   Serial.println("Closing connection.");
   client.end(); //Free the resources
-  //delay(1000);
   timeLastSubmit = millis();
   lcd.setCursor(1,0);lcd.print("Ready.        ");
   
