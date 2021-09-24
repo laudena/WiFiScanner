@@ -21,5 +21,5 @@ The more measurements are made the better accuracy, because each point is calcul
 It is required to decide upfront where to measure the network around the house, and to provide these coordinates on the house image. Any image will do, but try to make it to scale.
 
 ---
-### Demo video is under images folder
+### The project uses ESP32, which can be seen here: https://www.mischianti.org/wp-content/uploads/2021/07/ESP32-DEV-KIT-DevKitC-v4-pinout-mischianti.jpg
 
