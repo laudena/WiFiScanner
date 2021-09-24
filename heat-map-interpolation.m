@@ -10,7 +10,7 @@ uc1 = unique( sortedData(:,1) ) ;
 mc2 = accumarray( sortedData(:,1), sortedData(:,2), [], @mean ) ;
 newData = [uc1, mc2(uc1)]
 
-picture = imread('https://github.com/laudena/dictionary/raw/master/src/main/resources/floorPlan_onSmallSize.jpg');
+picture = imread('https://github.com/laudena/WiFiScanner/raw/main/sourceMap/floorPlan_onSmallSize_final.jpg');
 [height,width,depth] = size(picture);
 
 %The locations coordinates I used for measurements, on an image of the house. top-left corner is 0,0. (the location number# is the location on the array)
@@ -36,7 +36,7 @@ strengthPercent = 2*(Signal+100)/100;
 OverlayImage=[];
 F = scatteredInterpolant(Y, X, strengthPercent,'linear');
 for i = 1:height-1
-   for j = 100:width-280
+   for j = 100:width
           OverlayImage(i,j) = F(i,j);
    end
 end
