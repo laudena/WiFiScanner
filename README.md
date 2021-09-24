@@ -8,7 +8,7 @@ This project is based on https://au.mathworks.com/help/thingspeak/measure-arduin
 I added an easy to use scanner box, which takes into account the limits imposed by the Thingspeak free tier service (accepting a new record in 15 seconds intervals). 
 
 
-<img src="https://github.com/laudena/WiFiScanner/raw/main/images/WhatsApp Image 2021-09-24 at 15.48.12.jpeg" width="200">
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner Box.jpeg" width="200">
 
 ## How it works
 ### Setup mode
@@ -27,7 +27,8 @@ It is required to decide upfront where to measure the network around the house a
 ### More Info
 A DEMO video can be seen here: https://youtu.be/mV1DMqeotEE
 
-<img src="https://github.com/laudena/WiFiScanner/raw/main/images/WhatsApp%20Image%202021-09-24%20at%2015.49.44.jpeg" width="200">
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner connections 1.jpeg" width="200">
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Results Heat Map.png" width="200">
 
 
 The project uses ESP32 like this one: https://www.mischianti.org/wp-content/uploads/2021/07/ESP32-DEV-KIT-DevKitC-v4-pinout-mischianti.jpg
