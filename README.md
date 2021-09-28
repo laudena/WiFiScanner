@@ -6,7 +6,7 @@ This project is based on https://au.mathworks.com/help/thingspeak/measure-arduin
 
 ## What's in it?
 I added an easy to use scanner box, which takes into account the limits imposed by the Thingspeak free tier service (accepting a new record in 15 seconds intervals). 
-![The WiFi Scanner](https://github.com/laudena/WiFiScanner/raw/main/images/WhatsApp%20Image%202021-09-24%20at%2015.49.44.jpeg)
+![The WiFi Scanner](https://github.com/laudena/WiFiScanner/raw/main/images/WhatsApp%20Image%202021-09-24%20at%2015.49.44.jpeg width="100" height="100")
 
 ## How it works
 ### Setup mode
