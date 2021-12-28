@@ -8,7 +8,7 @@ This project is based on https://au.mathworks.com/help/thingspeak/measure-arduin
 I added an easy to use scanner box, which takes into account the limits imposed by the Thingspeak free tier service (accepting a new record in 15 seconds intervals). 
 
 
-<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner Box.jpeg" width="200">
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner Box.jpeg" width="300">
 
 ## How it works
 ### Setup mode
@@ -23,17 +23,20 @@ The more measurements are made the better accuracy because each point is calcula
 ### Map image
 It is required to decide upfront where to measure the network around the house and to provide these coordinates on the house image. Any image will do, but try to make it to scale.
 
----
-### More Info
-A DEMO video can be seen here: https://youtu.be/mV1DMqeotEE
 
-<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner connections 1.jpeg" width="200">
+## Results
+I mapped once with a single router and then again with three routers working together in a mesh.
 
 <figcaption align = "center"><b>Fig.1 Single Router</b></figcaption>
 <img src="https://github.com/laudena/WiFiScanner/raw/main/images/Results Heat Map.png" height="300">
 
-<figcaption align = "center"><b>Fig.2 Three Router Mesh</b></figcaption>
+<figcaption align = "center"><b>Fig.2 Three Routers Mesh</b></figcaption>
 <img src="https://github.com/laudena/WiFiScanner/raw/main/images/Results Heat Map Mesh.png" height="300">
 
+---
+### More Info
+A DEMO video can be seen here: https://youtu.be/mV1DMqeotEE
+
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner connections 1.jpeg" width="300">
 
 The project uses ESP32 like this one: https://www.mischianti.org/wp-content/uploads/2021/07/ESP32-DEV-KIT-DevKitC-v4-pinout-mischianti.jpg
