@@ -29,6 +29,9 @@ A DEMO video can be seen here: https://youtu.be/mV1DMqeotEE
 
 <img src="https://github.com/laudena/WiFiScanner/raw/main/images/Scanner connections 1.jpeg" width="200">
 <img src="https://github.com/laudena/WiFiScanner/raw/main/images/Results Heat Map.png" width="200">
+<figcaption align = "center"><b>Fig.1 Single Router</b></figcaption>
+<img src="https://github.com/laudena/WiFiScanner/raw/main/images/Results Heat Map Mesh.png" width="200">
+<figcaption align = "center"><b>Fig.2 Three Router Mesh</b></figcaption>
 
 
 The project uses ESP32 like this one: https://www.mischianti.org/wp-content/uploads/2021/07/ESP32-DEV-KIT-DevKitC-v4-pinout-mischianti.jpg
